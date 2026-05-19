@@ -3,7 +3,8 @@
 # `pytest` directly to guarantee your local run matches CI behavior.
 #
 # What this script enforces:
-#   * -n 4 xdist workers (CI has 4 cores; -n auto diverges locally)
+#   * `-n auto` xdist workers (pytest-isolate forks each test, so state
+#     leakage flakes that forced us to cap at 4 are gone)
 #   * TZ=UTC, LANG=C.UTF-8, PYTHONHASHSEED=0 (deterministic)
 #   * Credential env vars blanked (conftest.py also does this, but this
 #     is belt-and-suspenders for anyone running `pytest` outside of
